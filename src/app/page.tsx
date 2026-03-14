@@ -11,37 +11,66 @@ export default async function Home() {
   ]);
 
   return (
-    <main className="max-w-6xl mx-auto px-5 py-12 md:py-20">
-      <header className="mb-12 flex items-start justify-between">
-        <div>
-          <Link href="/">
-            <Image src="/logo.svg" alt="Spool.film" width={160} height={35} priority />
-          </Link>
-          <p className="text-muted text-sm mt-1.5 max-w-md">
-            A living archive of product films and visual experiments that set the bar.
-          </p>
-        </div>
-        <Link
-          href="/submit"
-          className="text-sm font-medium px-4 py-2 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity whitespace-nowrap"
-        >
-          Submit
+    <main>
+      {/* Top nav */}
+      <nav className="max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
+        <Link href="/" className="text-sm font-medium tracking-tight">
+          Spool.film
         </Link>
-      </header>
+        <div className="flex items-center gap-6">
+          <Link href="/submit" className="text-sm text-muted hover:text-foreground transition-colors">
+            Submit video
+          </Link>
+        </div>
+      </nav>
 
-      <VideoGrid entries={entries} categories={categories} />
-
-      <section className="mt-20 pt-12 border-t border-border">
-        <SubscribeForm />
-      </section>
-
-      <footer className="mt-12 pt-8 border-t border-border flex items-center justify-between gap-4 flex-wrap">
-        <p className="text-xs text-muted">
-          © {new Date().getFullYear()} Spool.film — Curated with care.
+      {/* Hero */}
+      <section className="text-center py-20 md:py-32 px-5">
+        <Image
+          src="/logo.svg"
+          alt="Spool.film"
+          width={200}
+          height={44}
+          priority
+          className="mx-auto mb-6"
+        />
+        <p className="text-lg md:text-xl max-w-xl mx-auto mb-8 leading-relaxed">
+          A living archive of product films and visual experiments that set the bar.
         </p>
-        <div className="max-w-xs">
+        <div className="max-w-sm mx-auto mb-4">
           <SubscribeForm compact />
         </div>
+        <p className="text-sm text-muted">
+          Or follow on{" "}
+          <a
+            href="https://x.com/SpoolFilm"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground hover:opacity-70 transition-opacity"
+          >
+            x.com
+          </a>
+        </p>
+      </section>
+
+      {/* Grid */}
+      <section className="max-w-6xl mx-auto px-5 pb-20">
+        <VideoGrid entries={entries} categories={categories} />
+      </section>
+
+      {/* Footer */}
+      <footer className="max-w-6xl mx-auto px-5 py-8 border-t border-border flex items-center justify-between gap-4 flex-wrap">
+        <p className="text-xs text-muted">
+          © {new Date().getFullYear()} Spool.film
+        </p>
+        <a
+          href="https://x.com/SpoolFilm"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-muted hover:text-foreground transition-colors"
+        >
+          @SpoolFilm
+        </a>
       </footer>
     </main>
   );
