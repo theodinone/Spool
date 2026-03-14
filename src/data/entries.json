@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "slug": "apple-vision-pro",
+    "title": "Apple Vision Pro",
+    "description": "Apple's introduction of Vision Pro — their first spatial computer. A masterclass in product filmmaking that balances technical demonstration with emotional storytelling.",
+    "videoUrl": "https://www.youtube.com/watch?v=TX9qSaGXFyg",
+    "thumbnailUrl": "https://img.youtube.com/vi/TX9qSaGXFyg/maxresdefault.jpg",
+    "category": "Hardware",
+    "launchDate": "2023-06-05"
+  },
+  {
+    "id": 2,
+    "slug": "linear-2024",
+    "title": "Linear — Built for the Next Generation",
+    "description": "Linear's brand film showcasing their opinionated approach to issue tracking. Crisp motion design, tight editing, and a clear product philosophy communicated in under two minutes.",
+    "videoUrl": "https://www.youtube.com/watch?v=WR9F4g-JNHM",
+    "thumbnailUrl": "https://img.youtube.com/vi/WR9F4g-JNHM/maxresdefault.jpg",
+    "category": "Software",
+    "launchDate": "2024-01-10"
+  },
+  {
+    "id": 3,
+    "slug": "nothing-phone-2",
+    "title": "Nothing Phone (2)",
+    "description": "Nothing's launch film for Phone (2) leans into the brand's transparent design language. Bold, minimal, and unapologetically different — the Glyph interface steals the show.",
+    "videoUrl": "https://www.youtube.com/watch?v=kT1i-VKRZ1k",
+    "thumbnailUrl": "https://img.youtube.com/vi/kT1i-VKRZ1k/maxresdefault.jpg",
+    "category": "Hardware",
+    "launchDate": "2023-07-11"
+  },
+  {
+    "id": 4,
+    "slug": "figma-config-2023",
+    "title": "Figma — Little Big Updates",
+    "description": "Figma's Config 2023 announcement reel — a rapid-fire showcase of new features wrapped in playful motion graphics. Sets the standard for SaaS product launches.",
+    "videoUrl": "https://www.youtube.com/watch?v=yI9QxKGjvMk",
+    "thumbnailUrl": "https://img.youtube.com/vi/yI9QxKGjvMk/maxresdefault.jpg",
+    "category": "Software",
+    "launchDate": "2023-06-21"
+  },
+  {
+    "id": 5,
+    "slug": "arc-browser",
+    "title": "Arc — A Browser That Browses for You",
+    "description": "The Browser Company's launch of Arc Search. Whimsical, fast-paced, and deeply human — proof that browser marketing doesn't have to be boring.",
+    "videoUrl": "https://www.youtube.com/watch?v=WIhqEkzKnds",
+    "thumbnailUrl": "https://img.youtube.com/vi/WIhqEkzKnds/maxresdefault.jpg",
+    "category": "Software",
+    "launchDate": "2024-01-28"
+  },
+  {
+    "id": 6,
+    "slug": "teenage-engineering-ep133",
+    "title": "Teenage Engineering EP-133 K.O. II",
+    "description": "Teenage Engineering's sampler launch video — pure product porn. No narration, just the device in action with meticulous sound design. The product speaks for itself.",
+    "videoUrl": "https://www.youtube.com/watch?v=YpFCnhPiJGE",
+    "thumbnailUrl": "https://img.youtube.com/vi/YpFCnhPiJGE/maxresdefault.jpg",
+    "category": "Hardware",
+    "launchDate": "2023-11-09"
+  },
+  {
+    "id": 7,
+    "slug": "stripe-sessions-2024",
+    "title": "Stripe Sessions 2024",
+    "description": "Stripe's annual showcase distills complex financial infrastructure into a visually stunning narrative. Data visualization meets storytelling at its finest.",
+    "videoUrl": "https://www.youtube.com/watch?v=5aOGeCJQTMk",
+    "thumbnailUrl": "https://img.youtube.com/vi/5aOGeCJQTMk/maxresdefault.jpg",
+    "category": "Software",
+    "launchDate": "2024-04-24"
+  },
+  {
+    "id": 8,
+    "slug": "rivian-r2",
+    "title": "Rivian R2 Reveal",
+    "description": "Rivian's R2 launch film blends cinematic outdoor footage with product design close-ups. Adventure meets electric — a compelling vision of the future of driving.",
+    "videoUrl": "https://www.youtube.com/watch?v=yzwM8KE2L3I",
+    "thumbnailUrl": "https://img.youtube.com/vi/yzwM8KE2L3I/maxresdefault.jpg",
+    "category": "Automotive",
+    "launchDate": "2024-03-07"
+  }
+]
