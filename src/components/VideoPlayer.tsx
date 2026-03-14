@@ -6,8 +6,10 @@ export default function VideoPlayer({ src }: { src: string }) {
       <video
         src={src}
         controls
-        controlsList="nodownload"
+        autoPlay
+        muted
         playsInline
+        controlsList="nodownload"
         onContextMenu={(e) => e.preventDefault()}
         className="w-full h-full object-cover"
       />
