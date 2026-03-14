@@ -5,7 +5,8 @@ export interface Entry {
   slug: string;
   title: string;
   description: string;
-  videoUrl: string;
+  videoUrl?: string;
+  videoFileUrl?: string;
   thumbnailUrl: string;
   category: string;
   launchDate: string;

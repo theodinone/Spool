@@ -53,7 +53,18 @@ export default async function EntryPage({
         ← Back
       </Link>
 
-      <VideoEmbed url={entry.videoUrl} />
+      {entry.videoFileUrl ? (
+        <div className="aspect-video rounded-lg overflow-hidden bg-border">
+          <video
+            src={entry.videoFileUrl}
+            controls
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : entry.videoUrl ? (
+        <VideoEmbed url={entry.videoUrl} />
+      ) : null}
 
       <div className="mt-8 space-y-4">
         <div className="flex items-start justify-between gap-4 flex-wrap">

@@ -25,9 +25,16 @@ export const videoEntry = defineType({
     }),
     defineField({
       name: "videoUrl",
-      title: "Video URL (YouTube / Vimeo)",
+      title: "Video URL (YouTube / Vimeo — optional)",
       type: "url",
-      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "videoFile",
+      title: "Video Upload (optional — upload your own video)",
+      type: "file",
+      options: {
+        accept: "video/*",
+      },
     }),
     defineField({
       name: "thumbnailUrl",
