@@ -1,11 +1,12 @@
-import { entries, getEntry } from "@/data/entries";
+import { getSanityEntry, getSanitySlugs } from "@/sanity/lib/queries";
 import VideoEmbed from "@/components/VideoEmbed";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return entries.map((e) => ({ slug: e.slug }));
+export async function generateStaticParams() {
+  const slugs = await getSanitySlugs();
+  return slugs.map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({
@@ -14,7 +15,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getEntry(slug);
+  const entry = await getSanityEntry(slug);
   if (!entry) return {};
   return {
     title: `${entry.title} — Spool.film`,
@@ -33,7 +34,7 @@ export default async function EntryPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const entry = getEntry(slug);
+  const entry = await getSanityEntry(slug);
   if (!entry) notFound();
 
   const date = new Date(entry.launchDate).toLocaleDateString("en-US", {

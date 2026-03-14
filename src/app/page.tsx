@@ -1,9 +1,12 @@
-import { entries, getCategories } from "@/data/entries";
+import { getSanityEntries, getSanityCategories } from "@/sanity/lib/queries";
 import VideoGrid from "@/components/VideoGrid";
 import Link from "next/link";
 
-export default function Home() {
-  const categories = getCategories();
+export default async function Home() {
+  const [entries, categories] = await Promise.all([
+    getSanityEntries(),
+    getSanityCategories(),
+  ]);
 
   return (
     <main className="max-w-6xl mx-auto px-5 py-12 md:py-20">
