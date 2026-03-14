@@ -18,7 +18,7 @@ export default async function Home() {
             <Image src="/logo.svg" alt="Spool.film" width={160} height={35} priority />
           </Link>
           <p className="text-muted text-sm mt-1.5 max-w-md">
-            A curated library of product videos, films, and visual experimentations for inspiration.
+            A living archive of product films and visual experiments that set the bar.
           </p>
         </div>
         <Link
