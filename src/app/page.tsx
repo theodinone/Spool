@@ -2,6 +2,7 @@ import { getSanityEntries, getSanityCategories } from "@/sanity/lib/queries";
 import VideoGrid from "@/components/VideoGrid";
 import SubscribeForm from "@/components/SubscribeForm";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function Home() {
   const [entries, categories] = await Promise.all([
@@ -13,7 +14,7 @@ export default async function Home() {
     <main className="max-w-6xl mx-auto px-5 py-12 md:py-20">
       <header className="mb-12">
         <Link href="/">
-          <h1 className="text-lg font-semibold tracking-tight">spool.film</h1>
+          <Image src="/logo.svg" alt="Spool.film" width={160} height={35} priority className="invert" />
         </Link>
         <p className="text-muted text-sm mt-1.5 max-w-md">
           The best product launch videos and films, curated for inspiration.
