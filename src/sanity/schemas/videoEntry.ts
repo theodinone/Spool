@@ -51,6 +51,15 @@ export const videoEntry = defineType({
       name: "category",
       title: "Category",
       type: "string",
+      options: {
+        list: [
+          { title: "Fintech", value: "Fintech" },
+          { title: "AI", value: "AI" },
+          { title: "Crypto", value: "Crypto" },
+          { title: "Social", value: "Social" },
+          { title: "CPG", value: "CPG" },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

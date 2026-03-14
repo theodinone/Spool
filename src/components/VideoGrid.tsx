@@ -62,12 +62,13 @@ function VideoCard({ entry }: { entry: Entry }) {
   );
 }
 
+const CATEGORIES = ["Fintech", "AI", "Crypto", "Social", "CPG"];
+
 export default function VideoGrid({
   entries,
-  categories,
 }: {
   entries: Entry[];
-  categories: string[];
+  categories?: string[];
 }) {
   const [active, setActive] = useState<string | null>(null);
 
@@ -89,7 +90,7 @@ export default function VideoGrid({
         >
           All
         </button>
-        {categories.map((cat) => (
+        {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setActive(active === cat ? null : cat)}
