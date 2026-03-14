@@ -9,6 +9,7 @@ const ENTRIES_QUERY = `*[_type == "videoEntry"] | order(launchDate desc) {
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
   thumbnailUrl,
+  "thumbnailImageUrl": thumbnailImage.asset->url,
   category,
   launchDate
 }`;
@@ -21,6 +22,7 @@ const ENTRY_QUERY = `*[_type == "videoEntry" && slug.current == $slug][0] {
   videoUrl,
   "videoFileUrl": videoFile.asset->url,
   thumbnailUrl,
+  "thumbnailImageUrl": thumbnailImage.asset->url,
   category,
   launchDate
 }`;

@@ -8,6 +8,7 @@ export interface Entry {
   videoUrl?: string;
   videoFileUrl?: string;
   thumbnailUrl: string;
+  thumbnailImageUrl?: string;
   category: string;
   launchDate: string;
 }

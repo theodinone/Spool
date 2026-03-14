@@ -2,18 +2,23 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { Entry } from "@/data/entries";
 
 function VideoCard({ entry }: { entry: Entry }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [hovering, setHovering] = useState(false);
+
+  const videoSrc = entry.videoFileUrl || "/placeholder.mp4";
+  const thumb = entry.thumbnailImageUrl || entry.thumbnailUrl;
 
   const handleMouseEnter = useCallback(() => {
+    setHovering(true);
     const video = videoRef.current;
     if (!video) return;
     video.currentTime = 0;
     video.play().catch(() => {});
-    // Loop first 10 seconds
     timeoutRef.current = setInterval(() => {
       if (video.currentTime >= 10) {
         video.currentTime = 0;
@@ -22,6 +27,7 @@ function VideoCard({ entry }: { entry: Entry }) {
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    setHovering(false);
     const video = videoRef.current;
     if (!video) return;
     video.pause();
@@ -40,15 +46,24 @@ function VideoCard({ entry }: { entry: Entry }) {
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative aspect-video rounded-lg overflow-hidden bg-border mb-3">
+        {thumb && !hovering && (
+          <Image
+            src={thumb}
+            alt={entry.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 50vw"
+          />
+        )}
         <video
           ref={videoRef}
-          src="/placeholder.mp4"
+          src={videoSrc}
           muted
           playsInline
           preload="metadata"
           controlsList="nodownload"
           onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
-          className="w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity ${hovering ? "opacity-100" : "opacity-0"}`}
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
       </div>
