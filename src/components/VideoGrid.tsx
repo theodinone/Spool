@@ -2,19 +2,15 @@
 
 import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { Entry } from "@/data/entries";
 
 function VideoCard({ entry }: { entry: Entry }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [hovering, setHovering] = useState(false);
-
   const videoSrc = entry.videoFileUrl || "/placeholder.mp4";
-  const thumb = entry.thumbnailImageUrl || entry.thumbnailUrl;
 
-  const handleMouseEnter = useCallback(() => {
-    setHovering(true);
+  // Auto-play and loop first 10 seconds
+  const startLoop = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
     video.currentTime = 0;
@@ -26,15 +22,19 @@ function VideoCard({ entry }: { entry: Entry }) {
     }, 100);
   }, []);
 
-  const handleMouseLeave = useCallback(() => {
-    setHovering(false);
-    const video = videoRef.current;
-    if (!video) return;
-    video.pause();
-    video.currentTime = 0;
-    if (timeoutRef.current) {
-      clearInterval(timeoutRef.current);
-      timeoutRef.current = null;
+  // Start looping when video element mounts
+  const setVideoRef = useCallback((el: HTMLVideoElement | null) => {
+    videoRef.current = el;
+    if (el) {
+      el.addEventListener("loadeddata", () => {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+        timeoutRef.current = setInterval(() => {
+          if (el.currentTime >= 10) {
+            el.currentTime = 0;
+          }
+        }, 100);
+      }, { once: true });
     }
   }, []);
 
@@ -42,28 +42,17 @@ function VideoCard({ entry }: { entry: Entry }) {
     <Link
       href={`/v/${entry.slug}`}
       className="group block"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="relative aspect-video rounded-lg overflow-hidden bg-border mb-3">
-        {thumb && !hovering && (
-          <Image
-            src={thumb}
-            alt={entry.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, 50vw"
-          />
-        )}
         <video
-          ref={videoRef}
+          ref={setVideoRef}
           src={videoSrc}
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           controlsList="nodownload"
           onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity ${hovering ? "opacity-100" : "opacity-0"}`}
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
       </div>
