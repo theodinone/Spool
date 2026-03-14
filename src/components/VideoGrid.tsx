@@ -46,6 +46,8 @@ function VideoCard({ entry }: { entry: Entry }) {
           muted
           playsInline
           preload="metadata"
+          controlsList="nodownload"
+          onContextMenu={(e: React.MouseEvent) => e.preventDefault()}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />

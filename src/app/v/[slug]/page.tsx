@@ -1,5 +1,6 @@
 import { getSanityEntry, getSanitySlugs } from "@/sanity/lib/queries";
 import VideoEmbed from "@/components/VideoEmbed";
+import VideoPlayer from "@/components/VideoPlayer";
 import SubscribeForm from "@/components/SubscribeForm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -54,14 +55,7 @@ export default async function EntryPage({
       </Link>
 
       {entry.videoFileUrl ? (
-        <div className="aspect-video rounded-lg overflow-hidden bg-border">
-          <video
-            src={entry.videoFileUrl}
-            controls
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <VideoPlayer src={entry.videoFileUrl} />
       ) : entry.videoUrl ? (
         <VideoEmbed url={entry.videoUrl} />
       ) : null}
