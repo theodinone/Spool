@@ -1,5 +1,6 @@
 import { getSanityEntry, getSanitySlugs } from "@/sanity/lib/queries";
 import VideoEmbed from "@/components/VideoEmbed";
+import SubscribeForm from "@/components/SubscribeForm";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -78,6 +79,10 @@ export default async function EntryPage({
         >
           ← Browse all videos
         </Link>
+      </div>
+
+      <div className="mt-10 pt-8 border-t border-border">
+        <SubscribeForm compact />
       </div>
     </main>
   );

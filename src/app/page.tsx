@@ -1,5 +1,6 @@
 import { getSanityEntries, getSanityCategories } from "@/sanity/lib/queries";
 import VideoGrid from "@/components/VideoGrid";
+import SubscribeForm from "@/components/SubscribeForm";
 import Link from "next/link";
 
 export default async function Home() {
@@ -21,10 +22,17 @@ export default async function Home() {
 
       <VideoGrid entries={entries} categories={categories} />
 
-      <footer className="mt-20 pt-8 border-t border-border">
+      <section className="mt-20 pt-12 border-t border-border">
+        <SubscribeForm />
+      </section>
+
+      <footer className="mt-12 pt-8 border-t border-border flex items-center justify-between gap-4 flex-wrap">
         <p className="text-xs text-muted">
           © {new Date().getFullYear()} Spool.film — Curated with care.
         </p>
+        <div className="max-w-xs">
+          <SubscribeForm compact />
+        </div>
       </footer>
     </main>
   );
