@@ -12,13 +12,21 @@ export default async function Home() {
 
   return (
     <main className="max-w-6xl mx-auto px-5 py-12 md:py-20">
-      <header className="mb-12">
-        <Link href="/">
-          <Image src="/logo.svg" alt="Spool.film" width={160} height={35} priority />
+      <header className="mb-12 flex items-start justify-between">
+        <div>
+          <Link href="/">
+            <Image src="/logo.svg" alt="Spool.film" width={160} height={35} priority />
+          </Link>
+          <p className="text-muted text-sm mt-1.5 max-w-md">
+            The best product launch videos and films, curated for inspiration.
+          </p>
+        </div>
+        <Link
+          href="/submit"
+          className="text-sm font-medium px-4 py-2 bg-foreground text-background rounded-md hover:opacity-90 transition-opacity whitespace-nowrap"
+        >
+          Submit
         </Link>
-        <p className="text-muted text-sm mt-1.5 max-w-md">
-          The best product launch videos and films, curated for inspiration.
-        </p>
       </header>
 
       <VideoGrid entries={entries} categories={categories} />
