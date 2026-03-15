@@ -48,6 +48,13 @@ export const videoEntry = defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: "appIcon",
+      title: "App Icon",
+      type: "image",
+      description: "Square app/brand icon displayed next to the title",
+      options: { hotspot: false },
+    }),
+    defineField({
       name: "category",
       title: "Category",
       type: "string",

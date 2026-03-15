@@ -56,13 +56,29 @@ function VideoCard({ entry }: { entry: Entry }) {
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
       </div>
-      <div className="flex items-start justify-between gap-3">
-        <h2 className="text-sm font-medium text-foreground group-hover:text-accent transition-colors leading-tight">
-          {entry.title}
-        </h2>
-        <span className="text-xs text-muted whitespace-nowrap mt-0.5">
-          {entry.category}
-        </span>
+      <div className="flex items-start gap-3">
+        {entry.appIconUrl && (
+          <img
+            src={entry.appIconUrl}
+            alt={`${entry.title} icon`}
+            className="w-9 h-9 rounded-lg flex-shrink-0 mt-0.5"
+          />
+        )}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="text-sm font-medium text-foreground group-hover:text-accent transition-colors leading-tight">
+              {entry.title}
+            </h2>
+            <span className="text-xs text-muted whitespace-nowrap mt-0.5">
+              {entry.category}
+            </span>
+          </div>
+          {entry.description && (
+            <p className="text-xs text-muted mt-0.5 line-clamp-1">
+              {entry.description}
+            </p>
+          )}
+        </div>
       </div>
     </Link>
   );

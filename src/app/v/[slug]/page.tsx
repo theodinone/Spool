@@ -61,18 +61,28 @@ export default async function EntryPage({
       ) : null}
 
       <div className="mt-8 space-y-4">
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {entry.title}
-          </h1>
-          <span className="px-3 py-1 rounded-full bg-border text-xs text-muted">
-            {entry.category}
-          </span>
+        <div className="flex items-start gap-4">
+          {entry.appIconUrl && (
+            <img
+              src={entry.appIconUrl}
+              alt={`${entry.title} icon`}
+              className="w-12 h-12 rounded-xl flex-shrink-0 mt-0.5"
+            />
+          )}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <h1 className="text-2xl font-semibold tracking-tight">
+                {entry.title}
+              </h1>
+              <span className="px-3 py-1 rounded-full bg-border text-xs text-muted">
+                {entry.category}
+              </span>
+            </div>
+            <p className="text-muted text-sm leading-relaxed max-w-2xl mt-1">
+              {entry.description}
+            </p>
+          </div>
         </div>
-
-        <p className="text-muted text-sm leading-relaxed max-w-2xl">
-          {entry.description}
-        </p>
 
         <p className="text-xs text-muted/60">{date}</p>
       </div>

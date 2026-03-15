@@ -11,7 +11,8 @@ const ENTRIES_QUERY = `*[_type == "videoEntry"] | order(launchDate desc) {
   thumbnailUrl,
   "thumbnailImageUrl": thumbnailImage.asset->url,
   category,
-  launchDate
+  launchDate,
+  "appIconUrl": appIcon.asset->url
 }`;
 
 const ENTRY_QUERY = `*[_type == "videoEntry" && slug.current == $slug][0] {
@@ -24,7 +25,8 @@ const ENTRY_QUERY = `*[_type == "videoEntry" && slug.current == $slug][0] {
   thumbnailUrl,
   "thumbnailImageUrl": thumbnailImage.asset->url,
   category,
-  launchDate
+  launchDate,
+  "appIconUrl": appIcon.asset->url
 }`;
 
 const SLUGS_QUERY = `*[_type == "videoEntry"]{ "slug": slug.current }`;

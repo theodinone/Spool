@@ -11,6 +11,7 @@ export interface Entry {
   thumbnailImageUrl?: string;
   category: string;
   launchDate: string;
+  appIconUrl?: string;
 }
 
 export const entries: Entry[] = data as Entry[];
