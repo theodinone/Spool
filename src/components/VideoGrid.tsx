@@ -69,7 +69,8 @@ function VideoCard({ entry }: { entry: Entry }) {
             <h2 className="text-sm font-medium text-foreground group-hover:text-accent transition-colors leading-tight">
               {entry.title}
             </h2>
-            <span className="text-xs text-muted whitespace-nowrap mt-0.5">
+            <span className="inline-flex items-center gap-1 text-xs text-muted whitespace-nowrap mt-0.5 px-2.5 py-0.5 rounded-full border border-border bg-background">
+              {CATEGORY_ICONS[entry.category]}
               {entry.category}
             </span>
           </div>
