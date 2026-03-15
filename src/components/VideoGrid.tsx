@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import type { Entry } from "@/data/entries";
 import { CATEGORY_ICONS, CategoryPill } from "@/components/CategoryIcons";
@@ -92,6 +92,42 @@ export default function VideoGrid({
   categories?: string[];
 }) {
   const [active, setActive] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const [pillStyle, setPillStyle] = useState<React.CSSProperties>({});
+  const [initiated, setInitiated] = useState(false);
+
+  const ALL_OPTIONS = ["All", ...CATEGORIES];
+
+  const updatePill = useCallback(() => {
+    const key = active ?? "All";
+    const btn = buttonRefs.current.get(key);
+    const container = containerRef.current;
+    if (!btn || !container) return;
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    setPillStyle({
+      left: btnRect.left - containerRect.left,
+      top: btnRect.top - containerRect.top,
+      width: btnRect.width,
+      height: btnRect.height,
+    });
+  }, [active]);
+
+  useEffect(() => {
+    updatePill();
+    if (!initiated) {
+      // Delay enabling transitions until after first position is set
+      requestAnimationFrame(() => setInitiated(true));
+    }
+  }, [active, updatePill, initiated]);
+
+  // Recalculate on resize
+  useEffect(() => {
+    const handleResize = () => updatePill();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [updatePill]);
 
   const filtered = active
     ? entries.filter((e) => e.category === active)
@@ -100,12 +136,23 @@ export default function VideoGrid({
   return (
     <>
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-2 mb-10 justify-center">
+      <div ref={containerRef} className="relative flex flex-wrap gap-2 mb-10 justify-center">
+        {/* Sliding pill */}
+        <div
+          className="absolute rounded-full bg-foreground z-0"
+          style={{
+            ...pillStyle,
+            transition: initiated
+              ? "left 0.25s ease-out, top 0.25s ease-out, width 0.25s ease-out"
+              : "none",
+          }}
+        />
         <button
+          ref={(el) => { if (el) buttonRefs.current.set("All", el); }}
           onClick={() => setActive(null)}
-          className={`px-4 py-1.5 rounded-full text-sm transition-colors ${
+          className={`relative z-10 px-4 py-1.5 rounded-full text-sm transition-colors duration-200 ${
             active === null
-              ? "bg-foreground text-background"
+              ? "text-background"
               : "text-muted hover:text-foreground"
           }`}
         >
@@ -114,10 +161,11 @@ export default function VideoGrid({
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
+            ref={(el) => { if (el) buttonRefs.current.set(cat, el); }}
             onClick={() => setActive(active === cat ? null : cat)}
-            className={`px-4 py-1.5 rounded-full text-sm transition-colors inline-flex items-center gap-1.5 ${
+            className={`relative z-10 px-4 py-1.5 rounded-full text-sm transition-colors duration-200 inline-flex items-center gap-1.5 ${
               active === cat
-                ? "bg-foreground text-background"
+                ? "text-background"
                 : "text-muted hover:text-foreground"
             }`}
           >
