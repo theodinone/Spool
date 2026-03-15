@@ -147,7 +147,7 @@ export default function VideoGrid({
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 min-h-[50vh]">
         {filtered.map((entry) => (
           <VideoCard key={entry.id} entry={entry} />
         ))}
