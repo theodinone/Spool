@@ -1,40 +1,36 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [displayChildren, setDisplayChildren] = useState(children);
-  const [stage, setStage] = useState<"enter" | "exit">("enter");
-  const prevPathname = useRef(pathname);
+  const [visible, setVisible] = useState(true);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (pathname !== prevPathname.current) {
-      // New page — fade out, then swap content, then fade in
-      setStage("exit");
-      const timer = setTimeout(() => {
-        prevPathname.current = pathname;
-        setDisplayChildren(children);
-        setStage("enter");
-        window.scrollTo({ top: 0, behavior: "instant" });
-      }, 200);
-      return () => clearTimeout(timer);
-    } else {
-      // Same path but children updated (e.g. initial load)
-      setDisplayChildren(children);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
     }
-  }, [pathname, children]);
+    // New page arrived — fade in
+    setVisible(false);
+    // Force a reflow so the opacity:0 takes effect before transitioning to 1
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setVisible(true);
+      });
+    });
+  }, [pathname]);
 
   return (
     <div
       style={{
-        transition: "opacity 0.2s ease, transform 0.25s ease",
-        opacity: stage === "enter" ? 1 : 0,
-        transform: stage === "enter" ? "translateY(0)" : "translateY(12px)",
+        opacity: visible ? 1 : 0,
+        transition: visible ? "opacity 0.3s ease-in" : "none",
       }}
     >
-      {displayChildren}
+      {children}
     </div>
   );
 }
