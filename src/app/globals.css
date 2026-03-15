@@ -36,6 +36,10 @@ body {
   background: rgba(0, 0, 0, 0.15);
 }
 
+a, button, [role="button"], input[type="submit"], label[for] {
+  cursor: pointer;
+}
+
 /* View Transition animations */
 ::view-transition-old(root) {
   animation: fade-out 0.2s ease-in forwards;
