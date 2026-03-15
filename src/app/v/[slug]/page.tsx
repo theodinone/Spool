@@ -1,6 +1,7 @@
 export const revalidate = 60;
 
 import { getSanityEntry, getSanitySlugs } from "@/sanity/lib/queries";
+import { CategoryPill } from "@/components/CategoryIcons";
 import VideoEmbed from "@/components/VideoEmbed";
 import VideoPlayer from "@/components/VideoPlayer";
 import SubscribeForm from "@/components/SubscribeForm";
@@ -76,9 +77,7 @@ export default async function EntryPage({
               <h1 className="text-2xl font-semibold tracking-tight">
                 {entry.title}
               </h1>
-              <span className="px-3 py-1 rounded-full bg-border text-xs text-muted">
-                {entry.category}
-              </span>
+              <CategoryPill category={entry.category} />
             </div>
             <p className="text-muted text-sm leading-relaxed max-w-2xl mt-1">
               {entry.description}
