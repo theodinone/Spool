@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { getSanityEntries, getSanityCategories } from "@/sanity/lib/queries";
 import VideoGrid from "@/components/VideoGrid";
 import SubscribeForm from "@/components/SubscribeForm";

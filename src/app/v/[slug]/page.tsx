@@ -1,3 +1,5 @@
+export const revalidate = 60;
+
 import { getSanityEntry, getSanitySlugs } from "@/sanity/lib/queries";
 import VideoEmbed from "@/components/VideoEmbed";
 import VideoPlayer from "@/components/VideoPlayer";
